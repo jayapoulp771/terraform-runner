@@ -1,0 +1,8 @@
+output "public_ip" {
+    description = "public ip of the redhat instance"
+    value = aws_instance.rhel_mytask.public_ip
+}
+output "ssh_connection" {
+    description = "ssh connect to instance"
+    value = "ssh ec2-user@${aws_instance.rhel_mytask.public_ip}"
+}
