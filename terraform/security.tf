@@ -1,15 +1,7 @@
-resource "aws_security_group" "mytask_sg" {
-  name = "mytask-sg"
-  description = "allow ssh and mysql"
-  vpc_id = "vpc-0d31167a053058b6f"
-
-  ingress {
-    description = "Allow SSH"
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_security_group" "mytask_sgn" {
+  name = "mytask_sgn"
+  description = "allow mysql"
+  vpc_id = var.vpc_id
 
   ingress {
     description = "Allow Mysql"
@@ -19,6 +11,7 @@ resource "aws_security_group" "mytask_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }  
   egress {
+    description = "outbound"
     from_port = 0
     to_port = 0
     protocol = "-1"
@@ -26,6 +19,6 @@ resource "aws_security_group" "mytask_sg" {
   }
   
   tags = {
-    Name = "mytask-sg"
+    Name = "mytask_sgn"
   }
 }
